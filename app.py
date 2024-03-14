@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
@@ -8,6 +8,11 @@ app = Flask(__name__)
 model_name = "microsoft/phi-1_5"
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+# Define a route for serving the HTML page
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # Define a route for model inference
 @app.route('/predict', methods=['POST'])
