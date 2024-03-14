@@ -37,6 +37,7 @@ def predict():
     predicted_label = model.config.id2label[predicted_class]
     
     return jsonify({'predicted_label': predicted_label})
-
+    
+home()
 if __name__ == '__main__':
     app.run(debug=True)
