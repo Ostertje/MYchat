@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify, render_template
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -12,6 +15,8 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 # Define a route for serving the HTML page
 @app.route('/')
 def home():
+    print('Rendering home page')
+    logging.debug('Rendering home page')
     return render_template('index.html')
 
 # Define a route for model inference
