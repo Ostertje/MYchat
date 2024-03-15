@@ -15,8 +15,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 # Define a route for serving the HTML page
 @app.route('/')
 def home():
-    return render_template('index.html')
-
+    with app.app_context():
+        return render_template('index.html')
+        
 # Define a route for model inference
 @app.route('/predict', methods=['POST'])
 def predict():
