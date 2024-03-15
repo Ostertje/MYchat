@@ -15,8 +15,6 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 # Define a route for serving the HTML page
 @app.route('/')
 def home():
-    print('Rendering home page')
-    logging.debug('Rendering home page')
     return render_template('index.html')
 
 # Define a route for model inference
@@ -38,6 +36,5 @@ def predict():
     
     return jsonify({'predicted_label': predicted_label})
     
-home()
 if __name__ == '__main__':
     app.run(debug=True)
